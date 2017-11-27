@@ -1,0 +1,56 @@
+<!doctype html>
+<head>
+</head>
+<body>
+	<header>
+		<a href='/login'><button>Login</button></a>
+		<a href='/signup'><button>Signup</button></a>
+
+    	<form action="/search">
+    		<input type="text" name="s"></input>
+    		<input type="submit" name='submit'></input>
+    	</form>
+
+    </header>
+	<div class='info'>
+
+        <img src={{recipe.image}}>
+		<h3>{{recipe.label}}</h3>
+		<h6>By {{recipe.source}} </h6>
+	</div>
+    <div class='recipe'>
+		<section class='ing'>
+			<h4>Ingredients</h4>
+			<ul>
+				{% for ing in recipe.ingredientLines%}
+				<li>{{ing}}</li>
+				{% endfor %}
+			</ul>
+		</section>
+		<section class='instr'>
+			<h4><a href='{{recipe.url}}' target="_blank">Instructions</a></h4>
+		</section>
+	</div>
+	<div>
+		<h4>Nutrition</h4>
+		<p>
+			{% for label in recipe.healthLabels %}
+			<li>{{label}}</li>
+			{% endfor %}
+		</p>
+		<table>
+			{% for value in nutritions %}
+			<tr>
+				<td>{{value.label}}</td>
+				<td>{{'%0.2f'| format(value.quantity|float)}}</td>
+				<td>{{value.unit}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+
+	<form method="POST" action='/log'>
+		<input type='hidden' name='recipe' value={{recipe}} />
+		<input type='submit' value='LOG THIS RECIPE' />
+	</form>
+</body>
