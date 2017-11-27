@@ -14,7 +14,7 @@
     </header>
     <div class='container'>
         {% for hit in hits%}
-            <li>{{hit.recipe.label}}</li>
+            <a href='/recipe/{{hit.ref}}'><li>{{hit.recipe.label}}</li></a>
         {% endfor %}
     </div>
 </body>
