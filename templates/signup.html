@@ -1,12 +1,29 @@
 <!doctype html>
 <head>
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
 <body>
 	<header>
-		<a href='/login'><button>Login</button></a>
-		<a href='/signup'><button>Signup</button></a>
-    </header>
-    <form action='/signup' method='POST'>
+		<nav>
+			<ul>
+				<a href='/'><li>Track Meal</li></a>
+				<a href='/dashboard'><li>Dashboard</li></a>
+				<a href=''><li>Profile</li></a>
+			</ul>
+			<ul class="auth">
+				<a href='/login'><li>Login</li></a>
+				<a href='/signup'><li>Signup</li></a>
+			</ul>
+		</nav>
+	</header>
+
+    <form action='/signup' method='POST' class='auth_form'>
+		<h2>Signup</h2>
+		{% if error %}
+		<div class='error'>
+			{{error}}
+		</div>
+		{% endif %}
         <input type="text" name="username"/>
         <input type="password" name="password" />
         <input type="submit" value="Signup" />

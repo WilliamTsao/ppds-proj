@@ -1,20 +1,42 @@
 <!doctype html>
 <head>
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
 <body>
 	<header>
-		<a href='/login'><button>Login</button></a>
-		<a href='/signup'><button>Signup</button></a>
+		<nav>
+			<ul>
+				<a href='/'><li>Track Meal</li></a>
+				<a href='/dashboard'><li>Dashboard</li></a>
+				<a href=''><li>Profile</li></a>
+			</ul>
+			<ul class="auth">
+				<a href='/login'><li>Login</li></a>
+				<a href='/signup'><li>Signup</li></a>
+			</ul>
+		</nav>
+	</header>
 
-    	<form action="/search">
-    		<input type="text" name="s"></input>
-    		<input type="submit" name='submit'></input>
-    	</form>
+	<form action="/search" class='search_bar'>
+		<input type="text" name="s"></input>
+		<input type="submit" name='submit'></input>
+	</form>
 
-    </header>
-    <div class='container'>
+    <div class='res'>
         {% for hit in hits%}
-            <a href='/recipe/{{hit.ref}}'><li>{{hit.recipe.label}}</li></a>
-        {% endfor %}
+	       <a href='/recipe/{{hit.ref}}'>
+			   <section class=search_res>
+				   <img src='{{hit.recipe.image}}'/>
+				   <p>
+					   {{hit.recipe.label}}
+				   </p>
+				   <ul>
+					   {% for label in hit.recipe.healthLabels %}
+					  <li>{{label}}</li>
+					  {% endfor %}
+				   </ul>
+			   </section>
+		   </a>
+		{% endfor %}
     </div>
 </body>

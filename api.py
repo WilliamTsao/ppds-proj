@@ -9,7 +9,9 @@ def searchFood(data):
     url = BASE_URL + "search"
     data["api_id"] = RECIPE_ID
     data["api_key"] = RECIPE_API_KEY
-    return requests.get(url, params=data).json()
+    res = requests.get(url, params=data)
+    print(res)
+    return res.json()
     pass
 
 def recipe(ref):
